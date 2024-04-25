@@ -1,81 +1,104 @@
 # bookBackend
 
-## First you have to create .env file then paste all thing as i given
-DB_CONNECT="You mongoose database URL"
+## Setup
+
+First, create a `.env` file and paste the following environment variables:
+
+DB_CONNECT="Your mongoose database URL"
 ACCESS_TOKEN_SECRET="Your access secret key for jwt login"
 ACCESS_TOKEN_LIFE="180d"
 REFRESH_TOKEN_SECRET="Your refresh secret key for jwt login"
 REFRESH_TOKEN_LIFE="365d"
 
-## BASEURL :- http://localhost:5000/api
+bash
+Copy code
 
-## Register user api 
-Endpoint: /auth/register
-Method: POST
-body: {
-  "name": "example",
-  "email" : "example@gmail.com",
-  "password": "example@123"
-}
+## BASEURL
 
-## Login user api
+BASEURL: http://localhost:5000/api
+
+## API Endpoints
+
+### Register User
+
+- **Endpoint**: `/auth/register`
+- **Method**: `POST`
+- **Request Body**:
+  ```json
+  {
+    "name": "example",
+    "email": "example@gmail.com",
+    "password": "example@123"
+  }
+Login User
 Endpoint: /auth/login/user
 Method: POST
-body: {
-  "email" : "example@gmail.com",
+Request Body:
+json
+Copy code
+{
+  "email": "example@gmail.com",
   "password": "example@123"
 }
-NOTE: In this api response you can get accessToken and refreshToken save that in you frontend cache for use secure API.
-
-## Create new book object
+Note: In the response, you will receive accessToken and refreshToken. Save them in your frontend cache for secure API usage.
+Create New Book
 Endpoint: /book/create
 Method: POST
-headers: {
-  "Authorization": $`Bearer {your_login_api_accessToken}`
-}
-body: {
-  "title" : "example title",
-  "author": "example author",
-  "publication_year": 2022,
-  "price": 120                 <Optional>
-}
-
-## Get single book by there id
-Endpoint: /book/get/{your_book_id}        your_book_id is a default mongoose object id which is called _id.
-Method: GET
-headers: {
-  "Authorization": $`Bearer {your_login_api_accessToken}`
-}
-
-## Delete single book by there id
-Endpoint: /book/delete/{your_book_id}        your_book_id is a default mongoose object id which is called _id.
-Method: DELETE
-headers: {
-  "Authorization": $`Bearer {your_login_api_accessToken}`
-}
-
-## Update single book by there id
-Endpoint: /book/update/{your_book_id}        your_book_id is a default mongoose object id which is called _id.
-Method: PUT
-headers: {
-  "Authorization": $`Bearer {your_login_api_accessToken}`
-}
-body: {
-  "title" : "example title",
+Headers:
+css
+Copy code
+Authorization: Bearer {your_login_api_accessToken}
+Request Body:
+json
+Copy code
+{
+  "title": "example title",
   "author": "example author",
   "publication_year": 2022,
   "price": 120
 }
-
-## Get all books with there search by author or publication year.
+Optional: price field
+Get Single Book
+Endpoint: /book/get/{your_book_id}
+Method: GET
+Headers:
+css
+Copy code
+Authorization: Bearer {your_login_api_accessToken}
+Note: Replace {your_book_id} with the MongoDB object ID of the book.
+Delete Single Book
+Endpoint: /book/delete/{your_book_id}
+Method: DELETE
+Headers:
+css
+Copy code
+Authorization: Bearer {your_login_api_accessToken}
+Note: Replace {your_book_id} with the MongoDB object ID of the book.
+Update Single Book
+Endpoint: /book/update/{your_book_id}
+Method: PUT
+Headers:
+css
+Copy code
+Authorization: Bearer {your_login_api_accessToken}
+Request Body:
+json
+Copy code
+{
+  "title": "example title",
+  "author": "example author",
+  "publication_year": 2022,
+  "price": 120
+}
+Note: Replace {your_book_id} with the MongoDB object ID of the book.
+Get All Books
 Endpoint: /getall
 Method: GET
-headers: {
-  "Authorization": $`Bearer {your_login_api_accessToken}`
-}
-query: {
-  "publication_year": 2023,
-  "author": "example"
-}
-
-NOTE: Basically that authon and publication_year both key are optional and they can search with include cases.
+Headers:
+css
+Copy code
+Authorization: Bearer {your_login_api_accessToken}
+Query Parameters:
+publication_year: Filter books by publication year (optional)
+author: Filter books by author (optional)
+Note: Both publication_year and author parameters are optional and can be used for searching with case insensitivity.
