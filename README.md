@@ -126,7 +126,7 @@ BASEURL: http://localhost:5000/api
 
 ### Get all books with there search by author or publication year.
 
-- **Endpoint**: `/getall`
+- **Endpoint**: `/book/getall`
 - **Method**: `GET`
 - **Request Query**:
   ```json
