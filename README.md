@@ -10,6 +10,9 @@ ACCESS_TOKEN_LIFE="180d"
 REFRESH_TOKEN_SECRET="Your refresh secret key for jwt login"
 REFRESH_TOKEN_LIFE="365d"
 ```
+- **NOTE**: `ACCESS_TOKEN_SECRET and REFRESH_TOKEN_SECRET any type of string you want to create a secret.`
+
+  
 
 ## Clone my project after that follow my instruction
 
