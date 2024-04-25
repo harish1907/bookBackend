@@ -11,6 +11,18 @@ REFRESH_TOKEN_SECRET="Your refresh secret key for jwt login"
 REFRESH_TOKEN_LIFE="365d"
 ```
 
+## Clone my project after that follow my instruction
+
+### If you using npm
+- **Install libraries**: `npm i`
+- **Run Development mode**: `npm run dev`
+- **Run on server**: `npm start`
+
+### If you using yarn
+- **Install libraries**: `yarn`
+- **Run Development mode**: `yarn run dev`
+- **Run on server**: `yarn start`
+
 
 ## BASEURL
 
