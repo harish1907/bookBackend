@@ -3,15 +3,14 @@
 ## Setup
 
 First, create a `.env` file and paste the following environment variables:
-
+```
 DB_CONNECT="Your mongoose database URL"
 ACCESS_TOKEN_SECRET="Your access secret key for jwt login"
 ACCESS_TOKEN_LIFE="180d"
 REFRESH_TOKEN_SECRET="Your refresh secret key for jwt login"
 REFRESH_TOKEN_LIFE="365d"
+```
 
-bash
-Copy code
 
 ## BASEURL
 
@@ -30,75 +29,103 @@ BASEURL: http://localhost:5000/api
     "email": "example@gmail.com",
     "password": "example@123"
   }
-Login User
-Endpoint: /auth/login/user
-Method: POST
-Request Body:
-json
-Copy code
-{
-  "email": "example@gmail.com",
-  "password": "example@123"
-}
-Note: In the response, you will receive accessToken and refreshToken. Save them in your frontend cache for secure API usage.
-Create New Book
-Endpoint: /book/create
-Method: POST
-Headers:
-css
-Copy code
-Authorization: Bearer {your_login_api_accessToken}
-Request Body:
-json
-Copy code
-{
-  "title": "example title",
-  "author": "example author",
-  "publication_year": 2022,
-  "price": 120
-}
-Optional: price field
-Get Single Book
-Endpoint: /book/get/{your_book_id}
-Method: GET
-Headers:
-css
-Copy code
-Authorization: Bearer {your_login_api_accessToken}
-Note: Replace {your_book_id} with the MongoDB object ID of the book.
-Delete Single Book
-Endpoint: /book/delete/{your_book_id}
-Method: DELETE
-Headers:
-css
-Copy code
-Authorization: Bearer {your_login_api_accessToken}
-Note: Replace {your_book_id} with the MongoDB object ID of the book.
-Update Single Book
-Endpoint: /book/update/{your_book_id}
-Method: PUT
-Headers:
-css
-Copy code
-Authorization: Bearer {your_login_api_accessToken}
-Request Body:
-json
-Copy code
-{
-  "title": "example title",
-  "author": "example author",
-  "publication_year": 2022,
-  "price": 120
-}
-Note: Replace {your_book_id} with the MongoDB object ID of the book.
-Get All Books
-Endpoint: /getall
-Method: GET
-Headers:
-css
-Copy code
-Authorization: Bearer {your_login_api_accessToken}
-Query Parameters:
-publication_year: Filter books by publication year (optional)
-author: Filter books by author (optional)
-Note: Both publication_year and author parameters are optional and can be used for searching with case insensitivity.
+
+
+### Login user api
+
+- **Endpoint**: `/auth/login/user`
+- **Method**: `POST`
+- **Request Body**:
+  ```json
+  {"body": {
+    "email": "example@gmail.com",
+    "password": "example@123"
+  }}
+- **NOTE**: `In this api response you can get accessToken and refreshToken save that in you frontend cache for use secure API`
+  
+
+### Create new book object
+
+- **Endpoint**: `/book/create`
+- **Method**: `POST`
+- **Request Body**:
+  ```json
+  {
+    "title" : "example title",
+    "author": "example author",
+    "publication_year": 2022,
+    "price": 120
+  }
+- **Request Header**:
+  ```json
+  {
+    "Authorization" : "Bearer {your_accessToken_after_login}"
+  }
+- **NOTE**: `Price key is optional`
+
+
+### Get single book by there id
+
+- **Endpoint**: `/book/get/{your_book_id}`
+- **Method**: `GET`
+- **Request Header**:
+  ```json
+  {
+    "Authorization" : "Bearer {your_accessToken_after_login}"
+  }
+- **NOTE**: `your_book_id is a default mongoose object id which is called _id.`
+
+
+### Delete single book by there id
+
+- **Endpoint**: `/book/delete/{your_book_id}`
+- **Method**: `DELETE`
+- **Request Header**:
+  ```json
+  {
+    "Authorization" : "Bearer {your_accessToken_after_login}"
+  }
+- **NOTE**: `your_book_id is a default mongoose object id which is called _id.`
+
+
+### Update single book by there id
+
+- **Endpoint**: `/book/update/{your_book_id}`
+- **Method**: `PUT`
+- **Request Body**:
+  ```json
+  {
+    "title" : "example title",
+    "author": "example author",
+    "publication_year": 2022,
+    "price": 120
+  }
+- **Request Header**:
+  ```json
+  {
+    "Authorization" : "Bearer {your_accessToken_after_login}"
+  }
+- **NOTE**: `your_book_id is a default mongoose object id which is called _id.`
+
+
+
+### Get all books with there search by author or publication year.
+
+- **Endpoint**: `/getall`
+- **Method**: `GET`
+- **Request Query**:
+  ```json
+  {
+    "publication_year" : 2023,
+    "author": "example"
+  }
+- **Request Header**:
+  ```json
+  {
+    "Authorization" : "Bearer {your_accessToken_after_login}"
+  }
+
+
+
+
+- **NOTE**: `Thank you for your interest in viewing my profile and using my code. If you want to connect with me, you can do so through https://evolu-dev.vercel.app. `
