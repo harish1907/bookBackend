@@ -52,10 +52,10 @@ BASEURL: http://localhost:5000/api
 - **Method**: `POST`
 - **Request Body**:
   ```json
-  {"body": {
+  {
     "email": "example@gmail.com",
     "password": "example@123"
-  }}
+  }
 - **NOTE**: `In this api response you can get accessToken and refreshToken save that in you frontend cache for use secure API`
   
 
